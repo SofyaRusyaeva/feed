@@ -80,6 +80,28 @@
   ]
 }
 ```
+# Получение игформации о посте
+**URL** : `strollie/api/posts/:post_id`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, информацию о котором надо получить
+
+**Method** : `GET`
+
+### Успешный ответ
+
+**Code** : `200 OK`
+
+```json
+{
+    "posts": {
+        "post_id": "55555",
+        "author_id": "ObjectID()",
+        "text": "Текст поста",
+        "image_url": "https://post.com/image.jpg",
+        "date": "2024-03-10"
+    }
+}
+```
 
 
 # Публикация постов
@@ -97,17 +119,18 @@
     "image_url": "https://post.com/image.jpg" 
 }
 ```
+
 ### Успешный ответ
 
-**Code** : `200 OK`
+**Code** : `201 Created`
+
 ```json
 {
-    "success": true,
     "posts": {
         "post_id": "12345",
         "author_id": "ObjectID()",
         "text": "Текст поста",
-        "image_url": "https://post.com/image.jpg" 
+        "image_url": "https://post.com/image.jpg",
         "date": "2024-10-10"
     }
 }
@@ -129,7 +152,6 @@
 
 ```json
 {
-    "success": true,
     "message": "Пост успешно удалён"
 }
 ```
@@ -141,7 +163,6 @@
 
 ```json
 {
-    "success": false,
     "message": "Ошибка: пост не найден"
 }
 ```
@@ -178,7 +199,7 @@
           "comment_id": "56353",
           "text": "Recomment 2",
           "date": "2024-10-15"
-        },
+        }
       ]
     },
     {
@@ -209,14 +230,13 @@
 ```
 ### Успешный ответ
 
-**Code** : `200 OK`
+**Code** : `201 Created`
 ```json
 {
-    "success": true,
     "comments": {
         "author_id": "ObjectID()",
         "comment_id": "98765",
-        "date": "2024-10-10"
+        "date": "2024-10-10",
         "text": "Текст комментария",
         "date": "2024-10-13"
     }
@@ -225,17 +245,15 @@
 
 # Удалить комментарий
 
-**URL** : `strollie/api/posts/:post_id/comments`
+**URL** : `strollie/api/posts/:post_id/comments/:comment_id`
 
-**URL PARAMETRES** :`post_id=[integer]` - ID поста, на который нужно оставить комментарий
-
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, `:comment_id=[integer]` - ID коментария, который нужно удалить
 **Method** : `DELETE`
 ### Успешный ответ
 
 **Code** : `204 NO CONTENT`
 ```json
 {
-    "success": true,
     "message": "Комментарий успешно удалён"
 }
 ```
@@ -256,14 +274,13 @@
 ```
 ### Успешный ответ
 
-**Code** : `200 OK`
+**Code** : `201 Created`
 ```json
 {
-    "success": true,
     "comments": {
         "author_id": "ObjectID()",
         "comment_id": "54321",
-        "date": "2024-10-10"
+        "date": "2024-10-10",
         "text": "Текст ответа на комментарий",
         "date": "2024-11-13"
     }
@@ -301,11 +318,10 @@
 
 **Условие** : Указан верный ID поста
 
-**Code** : `200 OK`
+**Code** : `201 Created`
 
 ```json
 {
-    "success": true,
     "message": "Лайк успешно добавлен"
 }
 ```
@@ -317,7 +333,6 @@
 
 ```json
 {
-    "success": false,
     "message": "Ошибка: пост не найден"
 }
 ```
@@ -334,11 +349,10 @@
 
 **Условие** : Указан верный ID поста
 
-**Code** : `200 OK`
+**Code** : `204 No Content`
 
 ```json
 {
-    "success": true,
     "message": "Лайк успешно удалён"
 }
 ```
@@ -350,7 +364,6 @@
 
 ```json
 {
-    "success": false,
     "message": "Ошибка: пост не найден"
 }
 ```

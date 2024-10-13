@@ -91,7 +91,7 @@
 ```json
 {
     "author_id": "ObjectID()",
-    "content": "Текст поста",
+    "text": "Текст поста",
     "image_url": "https://post.com/image.jpg" 
 }
 ```
@@ -104,7 +104,7 @@
     "posts": {
         "post_id": "12345",
         "author_id": "ObjectID()",
-        "content": "Текст поста",
+        "text": "Текст поста",
         "image_url": "https://post.com/image.jpg" 
         "date": "2024-10-10"
     }
@@ -121,7 +121,7 @@
 
 ### Успешный ответ
 
-**Condition** : Указан верный ID поста
+**Условие** : Указан верный ID поста
 
 **Code** : `204 NO CONTENT`
 
@@ -133,7 +133,7 @@
 ```
 ### Ошибка
 
-**Condition** : Пост с указанным ID не существует
+**Условие** : Пост с указанным ID не существует
 
 **Code** : `404 NOT FOUND`
 
@@ -148,8 +148,147 @@
 
 # Получение списка комментариев
 # Оставить комментарий
+**URL** : `/posts/:post_id/comments`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, на который нужно оставить комментарий
+
+**Method** : `POST`
+### Запрос
+
+```json
+{
+    "author_id": "ObjectID()",
+    "text": "Текст комментария"
+}
+```
+### Успешный ответ
+
+**Code** : `200 OK`
+```json
+{
+    "success": true,
+    "comments": {
+        "author_id": "ObjectID()",
+        "comment_id": "98765",
+        "date": "2024-10-10"
+        "text": "Текст комментария",
+        "date": "2024-10-13"
+    }
+}
+```
+
 # Удалить комментарий
+
+**URL** : `/posts/:post_id/comments`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, на который нужно оставить комментарий
+
+**Method** : `DELETE`
+### Успешный ответ
+
+**Code** : `204 NO CONTENT`
+```json
+{
+    "success": true,
+    "message": "Комментарий успешно удалён"
+}
+```
+
 # Ответить на комментарий
+**URL** : `/posts/:post_id/comments/:comment_id`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, `:comment_id=[integer]` - ID коментария, на который нужно ответить
+
+**Method** : `POST`
+### Запрос
+
+```json
+{
+    "author_id": "ObjectID()",
+    "text": "Текст комментария"
+}
+```
+### Успешный ответ
+
+**Code** : `200 OK`
+```json
+{
+    "success": true,
+    "comments": {
+        "author_id": "ObjectID()",
+        "comment_id": "54321",
+        "date": "2024-10-10"
+        "text": "Текст ответа на комментарий",
+        "date": "2024-11-13"
+    }
+}
+```
+
+
 # Получение списка лайков
+
 # Поставить лайк
+**URL** : `/posts/:post_id`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, на который нужно поставить лайк
+
+**Method** : `POST`
+
+### Успешный ответ
+
+**Условие** : Указан верный ID поста
+
+**Code** : `200 OK`
+
+```json
+{
+    "success": true,
+    "message": "Лайк успешно добавлен"
+}
+```
+### Ошибка
+
+**Условие** : Пост с указанным ID не существует
+
+**Code** : `404 NOT FOUND`
+
+```json
+{
+    "success": false,
+    "message": "Ошибка: пост не найден"
+}
+```
+
 # Убрать лайк
+
+**URL** : `/posts/:post_id`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, с которого нужно убрать лайк
+
+**Method** : `DELETE`
+
+### Успешный ответ
+
+**Условие** : Указан верный ID поста
+
+**Code** : `200 OK`
+
+```json
+{
+    "success": true,
+    "message": "Лайк успешно удалён"
+}
+```
+### Ошибка
+
+**Условие** : Пост с указанным ID не существует
+
+**Code** : `404 NOT FOUND`
+
+```json
+{
+    "success": false,
+    "message": "Ошибка: пост не найден"
+}
+```
+

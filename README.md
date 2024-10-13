@@ -1,5 +1,6 @@
 # Получение ленты
-**URL** : `/api/feed`
+**URL** : `strollie/api/posts`
+
 **Method** : `GET`
 
 
@@ -70,7 +71,7 @@
             {
               "author_id": "ObjectID()",
               "text": "Recomment",
-              "likes": []
+              "date": "2024-12-07"
             }
           ]
         }
@@ -83,7 +84,8 @@
 
 # Публикация постов
 
-**URL** : `/posts`
+**URL** : `strollie/api/posts`
+
 **Method** : `POST`
 
 ### Запрос
@@ -113,7 +115,7 @@
 
 # Удаление поста
 
-**URL** : `/posts/:post_id`
+**URL** : `strollie/api/posts/:post_id`
 
 **URL PARAMETRES** :`post_id=[integer]` - ID поста, который нужно удалить
 
@@ -147,8 +149,52 @@
 
 
 # Получение списка комментариев
+**URL** : `strollie/api/posts/:post_id/comments`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, комментарии которого нужно получить
+
+**Method** : `GET`
+
+### Успешный ответ
+
+**Code** : `200 OK`
+```json
+{
+  "comments": [
+    {
+      "author_id": "ObjectID()",
+      "comment_id": "90765",
+      "date": "2024-10-10",
+      "text": "Текст комментария 1",
+      "re_comments": [
+        {
+          "author_id": "ObjectID()",
+          "comment_id": "155332",
+          "text": "Recomment 1",
+          "date": "2024-10-10"
+        },
+        {
+          "author_id": "ObjectID()",
+          "comment_id": "56353",
+          "text": "Recomment 2",
+          "date": "2024-10-15"
+        },
+      ]
+    },
+    {
+      "author_id": "ObjectID()",
+      "comment_id": "98065",
+      "date": "2024-10-10",
+      "text": "Текст комментария 2",
+      "re_comments": []
+    }
+  ]
+}
+```
+
 # Оставить комментарий
-**URL** : `/posts/:post_id/comments`
+
+**URL** : `strollie/api/posts/:post_id/comments`
 
 **URL PARAMETRES** :`post_id=[integer]` - ID поста, на который нужно оставить комментарий
 
@@ -179,7 +225,7 @@
 
 # Удалить комментарий
 
-**URL** : `/posts/:post_id/comments`
+**URL** : `strollie/api/posts/:post_id/comments`
 
 **URL PARAMETRES** :`post_id=[integer]` - ID поста, на который нужно оставить комментарий
 
@@ -195,7 +241,7 @@
 ```
 
 # Ответить на комментарий
-**URL** : `/posts/:post_id/comments/:comment_id`
+**URL** : `strollie/api/posts/:post_id/comments/:comment_id`
 
 **URL PARAMETRES** :`post_id=[integer]` - ID поста, `:comment_id=[integer]` - ID коментария, на который нужно ответить
 
@@ -227,8 +273,25 @@
 
 # Получение списка лайков
 
+**URL** : `strollie/api/posts/:post_id/likes`
+
+**URL PARAMETRES** :`post_id=[integer]` - ID поста, лайки с которого нужно получить
+
+**Method** : `GET`
+
+### Успешный ответ
+```json
+{
+  "likes": [
+    "ObjectID()",
+    "ObjectID()",
+    "ObjectID()"
+  ]
+}
+```
+
 # Поставить лайк
-**URL** : `/posts/:post_id`
+**URL** : `strollie/api/posts/:post_id`
 
 **URL PARAMETRES** :`post_id=[integer]` - ID поста, на который нужно поставить лайк
 
@@ -261,7 +324,7 @@
 
 # Убрать лайк
 
-**URL** : `/posts/:post_id`
+**URL** : `strollie/api/posts/:post_id`
 
 **URL PARAMETRES** :`post_id=[integer]` - ID поста, с которого нужно убрать лайк
 
